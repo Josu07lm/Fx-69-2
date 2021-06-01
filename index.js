@@ -11,7 +11,7 @@ OKE TERIMA KASIH
 // [❗] THX TO JGN DIHAPUS/DIGANTI
 // [❗] NAMA AUTHOR "NAYLA" JGN DI GANTI
 // [❗] JANGAN DI PERJUAL BELIKAN
-// [❗] PERATURAN DI LnaylaR? GW BERHENTI UPDATE
+// [❗] PERATURAN DI LANGGAR? GW BERHENTI UPDATE
 
 const {
 		WAConnection,
@@ -38,10 +38,7 @@ const { recognize } = require('./lib/ocr')
 const fs = require('fs')
 const yts = require( 'yt-search')
 const crypto = require('crypto') 
-const axios = require("axios")
 const ms = require('parse-ms')
-const imageToBase64 = require('image-to-base64')
-const { removeBackgroundFromImageFile } = require('remove.bg')
 const speed = require('performance-now')
 const moment = require('moment-timezone')
 const { exec, spawn, execSync } = require("child_process")  
@@ -118,7 +115,6 @@ const _Elite = JSON.parse(fs.readFileSync('./nayla/Elite.json'))
 const setiker = JSON.parse(fs.readFileSync('./src/stik.json'))
 const videonye = JSON.parse(fs.readFileSync('./src/video.json'))
 const audionye = JSON.parse(fs.readFileSync('./src/audio.json'))
-const nsfw = JSON.parse(fs.readFileSync('./database/nsfw.json'))
 const imagenye = JSON.parse(fs.readFileSync('./src/image.json')) 
 const antilink = JSON.parse(fs.readFileSync('./nayla/antilink.json'))
 const event = JSON.parse(fs.readFileSync('./nayla/event.json'))
@@ -133,7 +129,6 @@ const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
 const botx = JSON.parse(fs.readFileSync('./nayla/botx.json')) 
 const imageh = fs.readFileSync('./lib/♡.jpeg')
 const { help } = require('./src/help')
-const { uploadimg } = require('./lib/uploadimg')
 /* ===================================================[ Felixcrack ]==============================================================*/    
 /*======================================================[ TIME BOTZ ]==============================================================*/                
  	                    	              
@@ -314,13 +309,10 @@ ${demote}`
 			const isGroupAdmins = groupAdmins.includes(sender) || false
 			const isOwner = ownerNumber.includes(sender)
 			const messagesC = pes.slice(0).trim().split(/ +/).shift().toLowerCase()
-			const isNsfw = isGroup ? nsfw.includes(from) : false
 			const isAntiLink = isGroup ? antilink.includes(from) : false
             const itsMe = sender == botNumber ? true : false
 			const isEventon = isGroup ? event.includes(from) : false
 			const isAntigay = isGroup ? antigay.includes(from) : false
-            const isNayXi = isGroup ? nayXi.includes(from) : false			     
-			const isNayXix = isGroup ? nayXix.includes(from) : false			 		 
 			const isAntibocil = isGroup ? antibocil.includes(from) : false
             const ftoko = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "productMessage": { "product": { "productImage":{ "mimetype": "image/jpeg", "jpegThumbnail": fs.readFileSync(`./src/fx.jpg`)}, "title": ftake, "description": "FzBot", "currencyCode": "USD", "priceAmount1000": "5000000000", "retailerId": "naylaGanz", "productImageCount": 1}, "businessOwnerJid": `12603763944@s.whatsapp.net`}}}
 			const isAntiwibu = isGroup ? antiwibu.includes(from) : false
@@ -340,7 +332,6 @@ mess = {
 			    waitpor: `⏳Aguarde alguns instantes...⏳\n\nO bot irá enviar a img\nTente novamente caso não envie.`,
                 waitimg: `⏳Aguarde alguns instantes...⏳\n\nO bot irá enviar criar e enviar a imagem\nO processo dura no mínimo 10 segundos\nTente novamente caso não envie.`,
 				success: '✅Sucesso✅',
-				nsfwoff: '「 ❗ 」LA FUNCION DE NSFW NO ESTÁ ACTIVA!',
                 levelon: '✅função leveis foi ativada✅',
 				leveloff: '❌função leveis foi desativada❌',
 				levelnoton: '🚫A função leveis está desativada🚫',
@@ -1102,97 +1093,21 @@ const elitenay = `╭═══════════════════�
 			        
 			        
 //		 NUEVAS FUNCIONES***/
-case 'minion':
-				if (!isElite) return reply(nayzelite)
-				if (args.length < 1) return reply(`[❗] Ejemplo??\n*${prefix}${command} Felixcrack*`)
-				reply(naylachan)
-				F = body.slice(7)				  
-				anu = await getBuffer(`https://api.xteam.xyz/textpro/minion3d?text=${F}&APIKEY=10b9f9398549cb23`)
-				nayla.sendMessage(from, anu, image, {caption: `𝐹𝑒𝑙𝑖𝑥𝑐𝑟𝑎𝑐𝑘 𝐵𝑂𝑇`, quoted: nay})
-				break
-
-//MENU NSFW
-case 'fakefake':
-            if (args.length == 0) return reply(from, `Uso :\n${prefix}fakefake frase a etiquetar|respuesta`, FakeTextt)
-            var fakefake = body.slice(9)
-            var usuario1 = fakefake.split("|")[0];
-            var usuario2 = fakefake.split("|")[1];
-            nayla.sendMessage(from, usuario2, MessageType.text, { quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from }: {}) }, message: { conversation: `${usuario1}`}}})
-            break
-case 'loli2':
-				if (!isNsfw) return reply(mess.nsfwoff)
-				reply(naylachan)
-				fx = await getBuffer(`https://lolhuman.herokuapp.com/api/random/loli?apikey=oniichan`)
-				nayla.sendMessage(from, fx, image, {quoted: nay})
-				break
-case 'neko':
-				if (!isNsfw) return reply(mess.nsfwoff)
-				reply(naylachan)
-				fx = await getBuffer(`https://lolhuman.herokuapp.com/api/random/neko?apikey=oniichan`)
-				nayla.sendMessage(from, fx, image, {quoted: nay})
-				break
-case 'waifu':
-				if (!isNsfw) return reply(mess.nsfwoff)
-				reply(naylachan)
-				fx = await getBuffer(`https://lolhuman.herokuapp.com/api/random/waifu?apikey=oniichan`)
-				nayla.sendMessage(from, fx, image, {quoted: nay})
-				break
-case 'nsfwneko':
-				if (!isNsfw) return reply(mess.nsfwoff)
-				reply(naylachan)
-				fx = await getBuffer(`https://lolhuman.herokuapp.com/api/random/nsfw/neko?apikey=oniichan`)
-				nayla.sendMessage(from, fx, image, {quoted: nay})
-				break
-case 'nsfwwaifu':
-				if (!isNsfw) return reply(mess.nsfwoff)
-				reply(naylachan)
-				fx = await getBuffer(`https://lolhuman.herokuapp.com/api/random/nsfw/waifu?apikey=oniichan`)
-				nayla.sendMessage(from, fx, image, {quoted: nay})
-				break
-case 'nsfwloli':
-				if (!isNsfw) return reply(mess.nsfwoff)
-				reply(naylachan)
-				fx = await getBuffer(`https://lolhuman.herokuapp.com/api/random/nsfw/loli?apikey=oniichan`)
-				nayla.sendMessage(from, fx, image, {quoted: nay})
-				break
-
 case 'togif':
 if (!isElite) return reply(nayzelite)
 reply(naylachan)
                                         if (!isQuotedSticker) return reply('Responde a un sticker')
-                                        reply(mess.wait)
+                                        reply(naylachan)
                                         if (nay.message.extendedTextMessage.contextInfo.quotedMessage.stickerMessage.isAnimated === true){
                                         const encmedia = JSON.parse(JSON.stringify(nay).replace('quotedM','m')).message.extendedTextMessage.contextInfo
                                         const media = await nayla.downloadAndSaveMediaMessage(encmedia)
                                         const upload = await uploadimg(media, Date.now() + '.webp')
-                                        const rume = await axios.get(`https://lolhuman.herokuapp.com/api/convert/towebp?apikey=oniichan&img=${upload.result.image}`)
+                                        const rume = await axios.get(`http://nzcha-apii.herokuapp.com/webp-to-mp4?url=${upload.result.image}`)
                                         const buff = await getBuffer(rume.data.result)
-                                        nayla.sendMessage(from, buff, video, { mimetype: Mimetype.gif, caption: '𝔊𝕆∂-ƒ🅴𝕷𝕴𝑋', quoted: nay})
+                                        nayla.sendMessage(from, buff, video, { mimetype: Mimetype.gif, caption: '𝔊𝕆∂-ƒ🅴𝕷𝕴Ｘ', quoted: nay})
                                 }
                                 break
-				case 'simi':
-					if (args.length < 1) return reply('Y el texto we?')
-					teks = body.slice(5)
-					anu = await simih(teks) //fetchJson(`https://api.simsimi.net/v1/?text=${text}&lang=es=${teks}`, {method: 'get'})
-					//if (anu.error) return reply('Simi no reconoce tu idioma, acaso es alienigena?:0')
-					reply(anu)
-					break
-case 'joingc':
-					
-					if (!isOwner) return  reply(ptbr.ownerB())
-codeInvite = body.slice(32)
-response = await nayla.acceptInvite(codeInvite)
-reply('Done!!!')
-console.log(response)
-break
-
-case 'say':
-case 'escribe':
-                                        teks = body.slice(5)
-                                        if (args.length < 1) return reply('donde esta el texto?')
-                                        saying = teks
-                                        nayla.sendMessage(from, saying, text)
-                                        break
+				
 				case 'tovideo':
 				if (!isElite) return reply(nayzelite)
 				reply(naylachan)
@@ -1228,7 +1143,7 @@ case 'gimage':
 if (!isElite) return reply(nayzelite)
 if (!isPrem) return reply(prem1)
 reply(naylachan)
-                    if (args.length == 0) return reply(`[❗] Ejemplo: ${prefix + command} loli kawaii`)
+                    if (args.length == 0) return reply(`Contoh: ${prefix + command} loli kawaii`)
                     query = args.join(" ")
                     ini_buffer = await getBuffer(`https://lolhuman.herokuapp.com/api/gimage?apikey=oniichan&query=${query}`)
                     nayla.sendMessage(from, ini_buffer, image, { quoted: nay })
@@ -1297,13 +1212,13 @@ case 'ghost':
 if (!isElite) return reply(nayzelite)
 	                 if (!isQuotedAudio) return reply('Reply audio nya om')
 					encmedia = JSON.parse(JSON.stringify(odc).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-					media = await nayla.downloadAndSaveMediaMessage(encmedia)
+					media = await akira.downloadAndSaveMediaMessage(encmedia)
 					ran = getRandom('.mp3')
 					exec(`ffmpeg -i ${media} -filter:a "atempo=1.6,asetrate=3486" ${ran}`, (err, stderr, stdout) => {
 						fs.unlinkSync(media)
 						if (err) return reply('Error!')
 						hah = fs.readFileSync(ran)
-						nayla.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', ptt:true, quoted: { mek: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "url": "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc", "mimetype": "image/jpeg", "caption": "_${namabot}__", "fileSha256": "+Ia+Dwib70Y1CWRMAP9QLJKjIJt54fKycOfB2OEZbTU=", "fileLength": "28777", "height": 1080, "width": 1079, "mediaKey": "vXmRR7ZUeDWjXy5iQk17TrowBzuwRya0errAFnXxbGc=", "fileEncSha256": "sR9D2RS5JStw49HeBADguI23fWDz1aZu4faWG/CyRY=", "directPath": "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69", "mediaKeyTimestamp": "1610993486", "jpegThumbnail": fs.readFileSync('image/odc.jpeg')} }} })
+						akira.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', ptt:true, quoted: { mek: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "url": "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc", "mimetype": "image/jpeg", "caption": "_${namabot}__", "fileSha256": "+Ia+Dwib70Y1CWRMAP9QLJKjIJt54fKycOfB2OEZbTU=", "fileLength": "28777", "height": 1080, "width": 1079, "mediaKey": "vXmRR7ZUeDWjXy5iQk17TrowBzuwRya0errAFnXxbGc=", "fileEncSha256": "sR9D2RS5JStw49HeBADguI23fWDz1aZu4faWG/CyRY=", "directPath": "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69", "mediaKeyTimestamp": "1610993486", "jpegThumbnail": fs.readFileSync('image/odc.jpeg')} }} })
 						fs.unlinkSync(ran)
 					    })
 				       break
@@ -1353,52 +1268,7 @@ reply(naylachan)
 						fs.unlinkSync(ran)
 					})
 					break
-case 'spotify':
-                    if (args.length == 0) return reply(`[❗] Ejemplo: ${prefix + command} https://open.spotify.com/track/0ZEYRVISCaqz5yamWZWzaA`)
-                    url = args[0]
-                    get_result = await fetchJson(`https://lolhuman.herokuapp.com/api/spotify?apikey=oniichan&url=${url}`)
-                    get_result = get_result.result
-                    ini_txt = `Title : ${get_result.title}\n`
-                    ini_txt += `Artists : ${get_result.artists}\n`
-                    ini_txt += `Duration : ${get_result.duration}\n`
-                    ini_txt += `Popularity : ${get_result.popularity}\n`
-                    ini_txt += `Preview : ${get_result.preview_url}\n`
-                    thumbnail = await getBuffer(get_result.thumbnail)
-                    nayla.sendMessage(from, thumbnail, image, { quoted: nay, caption: ini_txt })
-                    get_audio = await getBuffer(get_result.link[3].link)
-                    nayla.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', filename: `${get_result.title}.mp3`, quoted: nay })
-                    break
-case 'spotifysearch':
-                    if (args.length == 0) return reply(`Ejemplo: ${prefix + command} Control NCS`)
-                    query = args.join(" ")
-                    get_result = await fetchJson(`https://lolhuman.herokuapp.com/api/xnxxsearch?apikey=beta&query=${query}`)
-                    get_result = get_result.result
-                    ini_txt = ""
-                    for (var x of get_result) {
-                        ini_txt += `Title : ${x.title}\n`
-                        ini_txt += `Artists : ${x.artists}\n`
-                        ini_txt += `Duration : ${x.duration}\n`
-                        ini_txt += `Link : ${x.link}\n`
-                        ini_txt += `Preview : ${x.preview_url}\n\n\n`
-                    }
-                    reply(ini_txt)
-                    break
-case 'ytmp4':  
-                     if (!isElite) return reply(nayzelite)
-if (!isPrem) return reply(prem1)
-                    if (args.length < 1) return reply('¿Y el link we?')
-					if (!isUrl(args[0]) && !args[0].includes('youtu')) return reply('Link Invalido Weon 😑🔪')
-                    reply(naylachan)   
-					anu = await fetchJson(`https://api.xteam.xyz/dl/ytmp4?url=${args[0]}&APIKEY=10b9f9398549cb23`)
-					
-					anu1 = `DESCARGADOR MP4 BY FELIXCRACK\n\n`
-                    anu1 += `✨ Titulo: ${anu.judul}\n`
-                    anu1 += `⚖️Tamaño: ${anu.size}\n`                    
-					anu2 = await getBuffer(anu.thumbnail)
-					nayla.sendMessage(from, anu2, image, { quoted: nay, caption: anu1 })
-					anu3 = await getBuffer(anu.url)
-					nayla.sendMessage(from, anu3, video, { mimetype: 'video/mp4', duration :-999999999999999999, quoted: nay })
-					break                  
+
 case 'ttp':
 if (!isElite) return reply(nayzelite)
 if (isBanned) return reply('Você está banido')
@@ -1455,10 +1325,9 @@ reply(naylachan)
                     break
 case 'xnxxsearch':
 if (!isElite) return reply(nayzelite)
-if (!isNsfw) return reply(mess.nsfwoff)
+reply(naylachan)
                     if (!isPrem) return reply(prem1)
-                    if (args.length == 0) return reply(`[❗] Ejemplo: ${prefix + command} Japanese`)
-                    reply(naylachan)
+                    if (args.length == 0) return reply(`Contoh: ${prefix + command} Japanese`)
                     query = args.join(" ")
                     get_result = await fetchJson(`http://api.lolhuman.xyz/api/xnxxsearch?apikey=oniichan&query=${query}`)
                     get_result = get_result.result
@@ -1473,7 +1342,38 @@ if (!isNsfw) return reply(mess.nsfwoff)
                     }
                     reply(ini_txt)
                     break
-case 'play3':
+case 'ytmp4':  
+                     if (!isElite) return reply(nayzelite)
+if (!isPrem) return reply(prem1)
+                    if (args.length < 1) return reply('¿Y el link we?')
+					if (!isUrl(args[0]) && !args[0].includes('youtu')) return reply('Link Invalido Weon 😑🔪')
+                    reply(naylachan)   
+					anu = await fetchJson(`https://api.xteam.xyz/dl/ytmp4?url=${args[0]}&APIKEY=10b9f9398549cb23`)
+					
+					anu1 = `DESCARGADOR MP4 BY FELIXCRACK\n\n`
+                    anu1 += `✨ Titulo: ${anu.judul}\n`
+                    anu1 += `⚖️Tamaño: ${anu.size}\n`                    
+					anu2 = await getBuffer(anu.thumbnail)
+					nayla.sendMessage(from, anu2, image, { quoted: nay, caption: anu1 })
+					anu3 = await getBuffer(anu.url)
+					nayla.sendMessage(from, anu3, video, { mimetype: 'video/mp4', duration :-999999999999999999, quoted: nay })
+					break                  
+					case 'ytmp3':
+		             if (!isElite) return reply(nayzelite)
+if (!isPrem) return reply(prem1)
+                    if (args.length < 1) return reply('¿Y el link we?')
+					if (!isUrl(args[0]) && !args[0].includes('youtu')) return reply('Link Invalido Weon 😑🔪')
+                    reply(naylachan)   
+					anu = await fetchJson(`https://api.xteam.xyz/dl/ytmp3?url=${args[0]}&APIKEY=10b9f9398549cb23`)
+					anu1 = `DESCARGADOR DE AUDIO DE YT BY FELIXCRACK\n\n`
+                    anu1 += `✨ Titulo: ${anu.judul}\n`
+                    anu1 += `⚖️ Tamaño: ${anu.size}\n`
+					anu2 = await getBuffer(anu.thumbnail)
+					anu3 = await getBuffer(anu.url)
+					nayla.sendMessage(from, anu2, image, { quoted: nay, caption: anu1 })
+					nayla.sendMessage(from, anu3, audio, { mimetype: 'audio/mp4', duration :-999999999999999999, quoted: nay })
+					break
+case 'play':
                 reply(naylachan)
                 play = body.slice(5)
                 anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=${play}&apikey=FELIXCRACKAPI409`)
@@ -1484,40 +1384,7 @@ case 'play3':
                 nayla.sendMessage(from, buffer, image, {quoted: nay, caption: infomp3})
                 nayla.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', duration :-999999999999999999, filename: `${anu.title}.mp3`, quoted: nay})
                 break
-case 'play':
-if (!isPrem) return reply(prem1)
-if (!isElite) return reply(nayzelite)                    
-                    if (args.length == 0) return reply(`Ejemplo: ${prefix + command} Control NCS`)
-                    reply(naylachan)                  
-                    query = args.join(" ")
-                    get_result = await fetchJson(`https://lolhuman.herokuapp.com/api/ytplay?apikey=oniichan&query=${query}`)
-                    get_result = get_result.result
-                    get_info = get_result.info
-                    ini_txt = `Titulo: ${get_info.title}\n`
-                    ini_txt += `🕵🏻‍♀️️Publicador: ${get_info.uploader}\n`
-                    ini_txt += `🕐Duracion: ${get_info.duration}\n`
-                    ini_txt += `👀Vistas: ${get_info.view}\n`
-                    ini_txt += `👍🏻Like: ${get_info.like}\n`
-                    ini_txt += `👎🏻Dislike: ${get_info.dislike}\n`
-                    ini_txt += `📋Descripcion:\n ${get_info.description}\n`
-                    buffer = await getBuffer(get_info.thumbnail)
-                    nayla.sendMessage(from, buffer, image, { quoted: nay, caption: ini_txt })
-                    get_audio = await getBuffer(get_result.audio[3].link)
-                    nayla.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', duration :-999999999999999999, filename: `${get_info.title}.mp3`, quoted: nay })
-                    break
-case 'play2':
-                    if (args.length == 0) return reply(`Example: ${prefix + command} Control NCS`)
-                    reply ('Espera ⌛ Tu musica se enviara en unos segundos!!')
-                    query = args.join(" ")
-                    get_result = await fetchJson(`https://lolhuman.herokuapp.com/api/ytplay2?apikey=oniichan&query=${query}`)
-                    get_result = get_result.result
-                    ini_buffer = await getBuffer(get_result.thumbnail)
-                    nayla.sendMessage(from, ini_buffer, image, { quoted: nay, caption: get_result.title })
-                    get_audio = await getBuffer(get_result.audio)
-                    nayla.sendMessage(from, get_audio, audio, { mimetype: Mimetype.mp4Audio, filename: `${get_result.title}.mp3`, quoted: nay })
-                    get_video = await getBuffer(get_result.video)
-                    nayla.sendMessage(from, get_video, video, { mimetype: Mimetype.mp4, filename: `${get_result.title}.mp4`, quoted: nay })
-                    break
+
 case 'ytplay':
 if (!isPrem) return reply(prem1)
 if (!isElite) return reply(nayzelite)
@@ -1709,7 +1576,7 @@ case 'icecold':
                    nayla.sendMessage(from, anu, image, {caption: `𝐹𝑒𝑙𝑖𝑥𝑐𝑟𝑎𝑐𝑘 𝐵𝑂𝑇`, quoted: nay1})
                    break 
                    case 'telesticker':
-                    if (args.length == 0) return reply(`[❗] Ejemplo: ${prefix + command} https://t.me/addstickers/LINE_Menhera_chan_ENG`)
+                    if (args.length == 0) return reply(`Contoh: ${prefix + command} https://t.me/addstickers/LINE_Menhera_chan_ENG`)
                     ini_url = args[0]
                     ini_url = await fetchJson(`https://lolhuman.herokuapp.com/api/telestick?apikey=eb35fd0f45ff356a91194eab&url=${ini_url}`)
                     ini_sticker = ini_url.result.sticker
@@ -2139,22 +2006,7 @@ case 'tagall2':
 					reply('𝑴𝑬𝑵𝑪𝑰𝑶𝑵 𝑫𝑬 𝑻𝑶𝑫𝑶𝑺'+teks+'')
 					break
 
-case 'ytmp3':
-		             if (!isElite) return reply(nayzelite)
-if (!isPrem) return reply(prem1)
-                    if (args.length < 1) return reply('¿Y el link we?')
-					if (!isUrl(args[0]) && !args[0].includes('youtu')) return reply('Link Invalido Weon 😑🔪')
-                    reply(naylachan)   
-					anu = await fetchJson(`https://api.xteam.xyz/dl/ytmp3?url=${args[0]}&APIKEY=10b9f9398549cb23`)
-					anu1 = `DESCARGADOR DE AUDIO DE YT BY FELIXCRACK\n\n`
-                    anu1 += `✨ Titulo: ${anu.judul}\n`
-                    anu1 += `⚖️ Tamaño: ${anu.size}\n`
-					anu2 = await getBuffer(anu.thumbnail)
-					anu3 = await getBuffer(anu.url)
-					nayla.sendMessage(from, anu2, image, { quoted: nay, caption: anu1 })
-					nayla.sendMessage(from, anu3, audio, { mimetype: 'audio/mp4', duration :-999999999999999999, quoted: nay })
-					break
-                    
+
 case 'stctag':
 case 'stickertag':
 case 'stag':
@@ -2862,17 +2714,17 @@ case 'regitrame':
                     reply(donasi1)
                     break
 
-case 'semoji': 
-                    if (args.length == 0) return reply(`Example: ${prefix + command} 😭`)
+case 'semoji':
+                    if (args.length == 0) return reply(`Ejemplo: ${prefix + command} 😭`)
                     emoji = args[0]
                     try {
-                    emoji = encodeURI(emoji[0])
+                        emoji = encodeURI(emoji[0])
                     } catch {
-                    emoji = encodeURI(emoji)
+                        emoji = encodeURI(emoji)
                     }
-                    ini_buffer = await getBuffer(`http://api.lolhuman.xyz/api/smoji/${emoji}?apikey=oniichan`)
-                    nayla.sendMessage(from, ini_buffer, sticker, { quoted: nay})
-                    break      
+                    ini_nayla = await getBuffer(`https://api.zeks.xyz/api/emoji-image?apikey=FELIXCRACKAPI409&emoji=${emoji}`)
+                    nayla.sendMessage(from, ini_nayla, sticker, {quoted: nay})
+                    break
 case 'narutologo2':  
                    if (!isElite) return reply(nayzelite)		
                    if (args.length < 1) return reply(`[❗] Ejemplo??\n*${prefix}${command} nayla*`)
@@ -3323,7 +3175,7 @@ case 'narutologo2':
                    var F = body.slice(6)
 				   var F1 = F.split("&")[0];
 				   var F2 = F.split("&")[1]
-                   anu = await getBuffer(`https://lolhuman.herokuapp.com/api/photooxy2/arcade8bit?apikey=oniichan&text1=${F1}&text2=${F2}`)
+                   anu = await getBuffer(`https://videfikri.com/api/textmaker/8bit/?text1=${F1}&text2=${F2}`)
                    nayla.sendMessage(from, anu, image, {caption: `𝐹𝑒𝑙𝑖𝑥𝑐𝑟𝑎𝑐𝑘 𝐵𝑂𝑇`, quoted: nay1})
                    break
                    case 'google':  
@@ -3532,7 +3384,7 @@ case 'narutologo2':
                     break
                     case 'artijadian':  
                     if (!isElite) return reply(nayzelite)	
-                    if (args.length < 1) return reply('MASUKKAN tnaylal&bulan&tahun')
+                    if (args.length < 1) return reply('MASUKKAN tanggal&bulan&tahun')
                     var F = body.slice(12)
 				    var F1 = F.split("&")[0];
 				    var F2 = F.split("&")[1];
@@ -4314,7 +4166,6 @@ case 'narutologo2':
                    anu3 = await getBuffer(anu2)
                    nayla.sendMessage(from, anu3, image, {caption: `𝐹𝑒𝑙𝑖𝑥𝑐𝑟𝑎𝑐𝑘 𝐵𝑂𝑇`, quoted: nay1})
                    break
-                   
                    case 'muslin':  
                    case 'walcyber':  
                    if (!isElite) return reply(nayzelite)	
@@ -4715,7 +4566,6 @@ case 'wallhd':
 				    case 'stikergif':  
 				    case 'sticker':
 				    case 'sgif':  
-				    case 'figu':
 				    case 's':  				 
 					if ((isMedia && !nay.message.videoMessage || isQuotedImage) && args.length == 0) {
 					const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(nay).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : nay
@@ -4731,8 +4581,8 @@ case 'wallhd':
 					reply(naylachan)
 					})
 					.on('end', function () {
-					console.log('SUSCRIBETE A FELIXCRACK 409')
-					nayla.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: nay})
+					console.log('SELESAI JANGAN LUPA SUBSCRIBE YT RIMURUBOTZ')
+					nayla.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: nay1})
 				    fs.unlinkSync(media)
 					fs.unlinkSync(ran)
 					})
@@ -4757,7 +4607,7 @@ case 'wallhd':
 					reply(`Gagal, pada saat mengkonversi ${tipe} ke stiker`)
 					})
 					.on('end', function () {
-					console.log('SUSCRIBETE A FELIXCRACK 409')
+					console.log('SELESAI JANGAN LUPA SUBSCRIBE YT RIMURUBOTZ')
 					nayla.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: nay1})
 					fs.unlinkSync(media)
 					fs.unlinkSync(ran)
@@ -4818,7 +4668,7 @@ case 'wallhd':
 						teks += `├╼ @${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
 					}
-					mentions(`*▢ Mensaje:* ${body.slice(8)}\n*▢ Grupo:*  ${groupName}\n*▢ Miembros:* ${groupMembers.length} \n*▢ Total De Admins:* ${groupAdmins.length}\n┌───⊷ *MENCIONES* ⊶`+teks+'└─────✪ FX ┃ ᴮᴼᵀ ✪───────* ', members_id, true)
+					mentions(`*▢ Mensaje:* ${body.slice(6)}\n*▢ Grupo:*  ${groupName}\n*▢ Miembros:* ${groupMembers.length} \n*▢ Total De Admins:* ${groupAdmins.length}\n┌───⊷ *MENCIONES* ⊶`+teks+'└─────✪ FX ┃ ᴮᴼᵀ ✪───────* ', members_id, true)
 					break
 				    case 'delete':  
 				case 'del':  
@@ -5097,7 +4947,7 @@ case 'wallhd':
                     reply(naylachan) 
                     F = body.slice(8)              			    
                     anu = await getBuffer(`https://api.xteam.xyz/videomaker/retro?text=${F}&APIKEY=${apixteam}`)
-                    nayla.sendMessage(from, anu, video, {caption: `𝐹𝑒𝑙𝑖𝑥??𝑟??𝑐?? 𝐵𝑂𝑇`, quoted: nay1}) 
+                    nayla.sendMessage(from, anu, video, {caption: `𝐹𝑒𝑙𝑖𝑥??𝑟??𝑐𝑘 𝐵𝑂𝑇`, quoted: nay1}) 
                     break                     
                     
   /* ===================================================[ Felixcrack ]==============================================================*/    
@@ -5148,9 +4998,9 @@ case 'wallhd':
                     anu = await fetchJson(`https://api.xteam.xyz/primbon/ramalancinta?tgl1=${F1}&bln1=${F2}&thn1=${F3}&nama1=${F4}&tgl2=${F5}&bln2=${F6}&thn2=${F7}&nama2=${F8}&APIKEY=${apixteam}`)
                     anu1 = `➻ *JUDUL* : ${anu.result.judul}\n`
                     anu1 += `➻ *NAMA1* : ${anu.result.nama1}\n`
-                    anu1 += `➻ *TnaylaL1* : ${anu.result.tgl1}\n`
+                    anu1 += `➻ *TANGGAL1* : ${anu.result.tgl1}\n`
                     anu1 += `➻ *NAMA2* : ${anu.result.nama2}\n`
-                    anu1 += `➻ *TnaylaL2* : ${anu.result.positif}\n`
+                    anu1 += `➻ *TANGGAL2* : ${anu.result.positif}\n`
                     anu1 += `➻ *NEGATIF* : ${anu.result.negatif}\n`
                     anu1 += `➻ *POSITIF* : ${anu.result.info}\n`
                     anu2 = await getBuffer(anu.result.img)
@@ -5171,7 +5021,7 @@ case 'wallhd':
 			 	    anu = await fetchJson(`https://api.xteam.xyz/primbon/ramalanjodoh?tgl1=${F1}&bln1=${F2}&thn1=${F3}&nama1=${F4}&tgl2=${F5}&bln2=${F6}&thn2=${F7}&nama2=${F8}&APIKEY=${apixteam}`)
 			 	    anu1 = `➻ *JUDUL* : ${anu.result.judul}\n`
                     anu1 += `➻ *NAMA1* : ${anu.result.nama1}\n`
-                    anu1 += `➻ *TnaylaL1* : ${anu.result.tgl1}\n`
+                    anu1 += `➻ *TANGGAL1* : ${anu.result.tgl1}\n`
                     anu1 += `➻ *NAMA2* : ${anu.result.nama2}\n`                     
                     anu1 += `➻ *KALKULASI* : ${anu.result.kalkulasi}\n`
                     anu1 += `➻ *POSITIF* : ${anu.result.info}\n`
@@ -5192,7 +5042,7 @@ case 'wallhd':
 			 	    anu = await fetchJson(`https://api.xteam.xyz/primbon/ramalanjodohbali?tgl1=${F1}&bln1=${F2}&thn1=${F3}&nama1=${F4}&tgl2=${F5}&bln2=${F6}&thn2=${F7}&nama2=${F8}&APIKEY=${apixteam}`)
 			 	    anu1 = `➻ *JUDUL* : ${anu.result.judul}\n`
                     anu1 += `➻ *NAMA1* : ${anu.result.nama1}\n`
-                    anu1 += `➻ *TnaylaL1* : ${anu.result.tgl1}\n`
+                    anu1 += `➻ *TANGGAL1* : ${anu.result.tgl1}\n`
                     anu1 += `➻ *NAMA2* : ${anu.result.nama2}\n`                     
                     anu1 += `➻ *KALKULASI* : ${anu.result.kalkulasi}\n`
                     anu1 += `➻ *POSITIF* : ${anu.result.info}\n`
@@ -5213,9 +5063,9 @@ case 'wallhd':
 			 	    anu = await fetchJson(`https://api.xteam.xyz/primbon/ramalansuamiistri?tgl1=${F1}&bln1=${F2}&thn1=${F3}&nama1=${F4}&tgl2=${F5}&bln2=${F6}&thn2=${F7}&nama2=${F8}&APIKEY=${apixteam}`)
 			 	    anu1 = `➻ *JUDUL* : ${anu.result.judul}\n`
 			 	    anu1 += `➻ *SUAMI* : ${anu.result.suami}\n`
-			 	    anu1 += `➻ *TnaylaL* : ${anu.result.tgl_suami}\n`
+			 	    anu1 += `➻ *TANGGAL* : ${anu.result.tgl_suami}\n`
 			 	    anu1 += `➻ *ISTRY* : ${anu.result.istri}\n`
-			 	    anu1 += `➻ *TnaylaL* : ${anu.result.tgl_istri}\n`
+			 	    anu1 += `➻ *TANGGAL* : ${anu.result.tgl_istri}\n`
 			 	    anu1 += `➻ *TABEL* : ${anu.result.tabel}\n`
 			 	    anu1 += `➻ *INFO* : ${anu.result.info}\n`
 			 	    reply(anu1)
@@ -5509,24 +5359,6 @@ case 'wallhd':
 					reply(`......`)
 					}
 					break  
-					case 'nsfw':
-				if (!isElite) return reply(nayzelite)	
-					if (!isGroup) return reply(`GROUP ONLY`)
-					if (!isGroupAdmins) return reply(mess.only.admin)
-				if (args.length < 1) return reply('「 ❗ 」 1 Para Activar, 0 Para Desactivar')
-				if (Number(args[0]) === 1) {
-				if (isNsfw) return reply(`「 ❗ 」La Funcion De Nsfw Ya Esta Activada En El Grupo!!`)
-				nsfw.push(from)
-				fs.writeFileSync('./database/nsfw.json', JSON.stringify(nsfw))
-				reply(`「 ❗ 」Activó con éxito la función NSFW en este grupo`)
-				} else if (Number(args[0]) === 0) {
-				nsfw.splice(from, 1)
-				fs.writeFileSync('./database/nsfw.json', JSON.stringify(nsfw))
-				reply(`「 ❗ 」Deshabilitó Con Éxito La Función De Nsfw En Este Grupo`)
-				} else {
-				reply('「 ❗ 」 1 Para Habilitar Y 0 Para Desactivar')
-				}
-				break
                     case 'antilink':
                     if (!isElite) return reply(nayzelite)
                     if (!isGroup) return reply(mess.only.group)	 
@@ -5541,7 +5373,7 @@ case 'wallhd':
 					} else if (Number(args[0]) === 0) {
 						antilink.splice(from, 1)
 						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-						reply('Se desactivo con éxito la función de bienvenida en este grupo ✔️')
+						reply('Desactivar con éxito la función de bienvenida en este grupo ✔️')
 					} else {
 						reply('1 para activar, 0 para desactivar')
 					}
@@ -5566,7 +5398,6 @@ case 'wallhd':
 					break
                     
 					case 'antigay':  
-					case 'antikuaker':
                     if (!isElite) return reply(nayzelite)	
 					if (!isGroup) return reply(`GROUP ONLY`) 
 					if (!isGroupAdmins) return reply(mess.only.admin)
@@ -5580,7 +5411,7 @@ case 'wallhd':
 					} else if (Number(args[0]) === 0) {
 					antilink.splice(from, 1)
 					fs.writeFileSync('./nayla/antigay.json', JSON.stringify(antigay))
-					reply('*[❗] SE DESACTIVO:  ANTIGAY')
+					reply('*[❗] SE DESACTIVO:  ANTIGAY*')
 					} else {
 					reply(`[❗] 1 Para activar/ 0 Para desactivar`)
 					}
@@ -6363,27 +6194,27 @@ case 'attp':
                     oxz1 += `[ ${oxo33} ]\n`
                     reply(oxz1)
                     break
-                    case 'gtts':
-		case 'tts':
-                if (!isElite) return reply(nayzelite)
-				if (args.length < 1) return nayla.sendMessage(from, '¡Y el código de idioma??!', text, {quoted: nay})
+                    case 'tts': 
+                    if (!isElite) return reply(nayzelite)
+					nayla.updatePresence(from, Presence.recording)
+					if (args.length < 1) return nayla.sendMessage(from, 'Maldita sea, y el código de lenguaje?', text, { quoted: nay })
+				
 					const gtts = require('./lib/gtts')(args[0])
-					if (args.length < 2) return nayla.sendMessage(from, '¿Y el texto?', text, {quoted: nay})
+					if (args.length < 2) return nayla.sendMessage(from, 'Nmms, y el texto??', text, { quoted: nay })
 					dtt = body.slice(8)
 					ranm = getRandom('.mp3')
 					rano = getRandom('.ogg')
-					dtt.length > 500
-					? reply('¿Quieres escribir la biblia o que?')
-					: gtts.save(ranm, dtt, function() {
-						exec(`ffmpeg -i ${ranm} -ar 48000 -vn -c:a libopus ${rano}`, (err) => {
-							fs.unlinkSync(ranm)
-							buffer = fs.readFileSync(rano)
-							if (err) return reply(ind.stikga())
-							nayla.sendMessage(from, buffer, audio, {quoted: nay, ptt:true})
-							fs.unlinkSync(rano)
+					dtt.length > 900
+						? reply('¿Quieres escribir la biblia o que??')
+						: gtts.save(ranm, dtt, function () {
+							exec(`ffmpeg -i ${ranm} -ar 7 -vn -c:a libopus ${rano}`, (err) => {
+								fs.unlinkSync(ranm)
+								buff = fs.readFileSync(rano)
+								if (err) return reply('Perdon, FALLE:(')
+								nayla.sendMessage(from, buff, audio, { quoted: nay, ptt: false })
+								fs.unlinkSync(rano)
+							})
 						})
-					})
-					
 					break
 					case 'pesan':
                     if (!isElite) return reply(nayzelite)
@@ -6757,13 +6588,14 @@ case 'attp':
 					reply("5 Segundo")
 					}, 0)
 				    }
-				    if (budy.includes("Onichan")){
+				    if (budy.includes("chan")){
 					if (!isGroup) return
 					if (!isAntiwibu) return
+					if (isGroupAdmins) return reply('Eres admin, te salvaste 🧐')
 					nayla.updatePresence(from, Presence.composing)
 					if (messagesC.includes("@62812874133914")) return reply("izin diterima")
 					var kic = `${sender.split("@")[0]}@s.whatsapp.net`
-					reply(`Homosexual detectado ${sender.split("@")[0]} serás eliminado. `)
+					reply(`wibu Terdeteksi maaf ${sender.split("@")[0]} serás eliminado. `)
 					setTimeout( () => {
 					nayla.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
 					}, 5000)
