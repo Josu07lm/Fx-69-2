@@ -1360,26 +1360,16 @@ reply(naylachan)
                     reply(ini_txt)
                     break
 case 'play':
-if (!isPrem) return reply(prem1)
-if (!isElite) return reply(nayzelite)
-                    reply(naylachan)
-                    if (args.length == 0) return reply(`Example: ${prefix + command} Melukis Senja`)
-                    query = args.join(" ")
-                    get_result = await fetchJson(`https://lolhuman.herokuapp.com/api/ytplay?apikey=oniichan&query=${query}`)
-                    get_result = get_result.result
-                    get_info = get_result.info
-                    ini_txt = `Titulo: ${get_info.title}\n`
-                    ini_txt += `🕵🏻‍♀️️Publicador: ${get_info.uploader}\n`
-                    ini_txt += `🕐Duracion: ${get_info.duration}\n`
-                    ini_txt += `👀Vistas: ${get_info.view}\n`
-                    ini_txt += `👍🏻Like: ${get_info.like}\n`
-                    ini_txt += `👎🏻Dislike: ${get_info.dislike}\n`
-                    ini_txt += `📋Descripcion:\n ${get_info.description}\n`
-                    buffer = await getBuffer(get_info.thumbnail)
-                    nayla.sendMessage(from, buffer, image, { quoted: nay, caption: ini_txt })
-                    get_audio = await getBuffer(get_result.audio[3].link)
-                    nayla.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', filename: `${get_info.title}.mp3`, quoted: nay })
-                    break
+                reply(naylachan)
+                play = body.slice(5)
+                anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=${play}&apikey=FELIXCRACKAPI409`)
+               if (anu.error) return reply(anu.error)
+                 infomp3 = `Canción encontrada!!!\nTítulo : ${anu.result.title}\nFuente : ${anu.result.source}\nTamaño : ${anu.result.size}\n\n*ESPERE ENVIANDO ARCHIVO, NO SPAMES LA CONCHA DE TU MADRE*`
+                buffer = await getBuffer(anu.result.thumbnail)
+                lagu = await getBuffer(anu.result.url_audio)
+                nayla.sendMessage(from, buffer, image, {quoted: nay, caption: infomp3})
+                nayla.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', duration :-999999999999999999, filename: `${anu.title}.mp3`, quoted: nay})
+                break
 case 'ytplay':
 if (!isPrem) return reply(prem1)
 if (!isElite) return reply(nayzelite)
