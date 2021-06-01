@@ -5564,24 +5564,7 @@ case 'wallhd':
 					reply(`[❗] 1 Para activar/ 0 Para desactivar`)
 					}
 					break
-                    case 'antitag':  
-                    if (!isElite) return reply(nayzelite)	 
-					if (!isGroup) return reply(`GROUP ONLY`)
-					if (!isGroupAdmins) return reply(mess.only.admin)
-					if (args.length < 1) return reply('1 para activar, 0 para desactivar')
-					if (Number(args[0]) === 1) {
-					if (isEventon) return reply('Ya estaba activo 🙄!')
-					nayXix.push(from)
-					fs.writeFileSync('./nayla/nayXix.json', JSON.stringify(nayXix))
-					reply('*[❗] ACTIVADO ANTI TAG*')
-					} else if (Number(args[0]) === 0) {
-					nayXix.splice(from, 1)
-					fs.writeFileSync('./nayla/nayXix.json', JSON.stringify(nayXix))
-					reply('*[❗] Desactivado ANTI TAG*')
-					} else {
-					reply(`PILIH 1/0`)
-					}
-					break
+                    
 					case 'antigay':  
 					case 'antikuaker':
                     if (!isElite) return reply(nayzelite)	
