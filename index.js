@@ -1104,6 +1104,14 @@ const elitenay = `╭═══════════════════�
 			        
 			        
 //		 NUEVAS FUNCIONES***/
+case 'minion':
+				if (!isElite) return reply(nayzelite)
+				if (args.length < 1) return reply(`[❗] Ejemplo??\n*${prefix}${command} Felixcrack*`)
+				reply(naylachan)
+				F = body.slice(7)				  
+				anu = await getBuffer(`https://api.xteam.xyz/textpro/minion3d?text=${F}&APIKEY=10b9f9398549cb23`)
+				nayla.sendMessage(from, anu, image, {caption: `𝐹𝑒𝑙𝑖𝑥𝑐𝑟𝑎𝑐𝑘 𝐵𝑂𝑇`, quoted: nay})
+				break
 
 //MENU NSFW
 case 'fakefake':
@@ -1377,25 +1385,22 @@ case 'spotifysearch':
                     }
                     reply(ini_txt)
                     break
-case 'ytmp4':
-if (!isElite) return reply(nayzelite)
-if (args.length == 0) return reply(`Ejemplo: ${prefix + command} https://youtu.be/b8LBUwgVfyY`)
+case 'ytmp4':  
+                     if (!isElite) return reply(nayzelite)
+if (!isPrem) return reply(prem1)
+                    if (args.length < 1) return reply('¿Y el link we?')
+					if (!isUrl(args[0]) && !args[0].includes('youtu')) return reply('Link Invalido Weon 😑🔪')
                     reply(naylachan)   
-                    ini_link = args[0]
-                    get_result = await fetchJson(`https://lolhuman.herokuapp.com/api/ytvideo?apikey=oniichan&url=${ini_link}`)
-                    get_result = get_result.result
-                    txt = `Titulo : ${get_result.title}\n`
-                    txt += `🕵🏻‍♀️️Publicador: ${get_result.uploader}\n`
-                    txt += `🕐Duracion: ${get_result.duration}\n`
-                    txt += `👀Vistas: ${get_result.view}\n`
-                    txt += `👍🏻Like: ${get_result.like}\n`
-                    txt += `👎🏻Dislike: ${get_result.dislike}\n`
-                    txt += `📋Descripcion:\n ${get_result.description}`
-                    buffer = await getBuffer(get_result.thumbnail)
-                    nayla.sendMessage(from, buffer, image, { quoted: nay, caption: txt })
-                    get_audio = await getBuffer(get_result.link[0].link)
-                    nayla.sendMessage(from, get_audio, video, { mimetype: 'video/mp4', filename: `${get_result.title}.mp4`, quoted: nay })
-                    break
+					anu = await fetchJson(`https://api.xteam.xyz/dl/ytmp4?url=${args[0]}&APIKEY=10b9f9398549cb23`)
+					
+					anu1 = `DESCARGADOR MP4 BY FELIXCRACK\n\n`
+                    anu1 += `✨ Titulo: ${anu.judul}\n`
+                    anu1 += `⚖️Tamaño: ${anu.size}\n`                    
+					anu2 = await getBuffer(anu.thumbnail)
+					nayla.sendMessage(from, anu2, image, { quoted: nay, caption: anu1 })
+					anu3 = await getBuffer(anu.url)
+					nayla.sendMessage(from, anu3, video, { mimetype: 'video/mp4', duration :-999999999999999999, quoted: nay })
+					break                  
 case 'ttp':
 if (!isElite) return reply(nayzelite)
 if (isBanned) return reply('Você está banido')
@@ -2139,23 +2144,19 @@ case 'tagall2':
 case 'ytmp3':
 		             if (!isElite) return reply(nayzelite)
 if (!isPrem) return reply(prem1)
-                    if (args.length == 0) return reply(`Ejemplo: ${prefix + command} https://youtu.be/b8LBUwgVfyY`)
+                    if (args.length < 1) return reply('¿Y el link we?')
+					if (!isUrl(args[0]) && !args[0].includes('youtu')) return reply('Link Invalido Weon 😑🔪')
                     reply(naylachan)   
-                    ini_link = args[0]
-                    get_result = await fetchJson(`https://lolhuman.herokuapp.com/api/ytaudio?apikey=oniichan&url=${ini_link}`)
-                    get_result = get_result.result
-                    ini_txt = `🤓 Título : ${get_result.title}\n`
-                    ini_txt += `💂 Subido Por: ${get_result.uploader}\n`
-                    ini_txt += `⌛Duración : ${get_result.duration}\n`
-                    ini_txt += `👀 Vistas : ${get_result.view}\n`
-                    ini_txt += `👍🏻 Like : ${get_result.like}\n`
-                    ini_txt += `👎🏻 Dislike : ${get_result.dislike}\n`
-                    ini_txt += `📜 Description :\n ${get_result.description}`
-                    ini_buffer = await getBuffer(get_result.thumbnail)
-                    nayla.sendMessage(from, ini_buffer, image, { quoted: nay, caption: ini_txt })
-                    get_audio = await getBuffer(get_result.link[3].link)
-                    nayla.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', filename: `${get_result.title}.mp3`, quoted: nay})
-                    break
+					anu = await fetchJson(`https://api.xteam.xyz/dl/ytmp3?url=${args[0]}&APIKEY=10b9f9398549cb23`)
+					anu1 = `DESCARGADOR DE AUDIO DE YT BY FELIXCRACK\n\n`
+                    anu1 += `✨ Titulo: ${anu.judul}\n`
+                    anu1 += `⚖️ Tamaño: ${anu.size}\n`
+					anu2 = await getBuffer(anu.thumbnail)
+					anu3 = await getBuffer(anu.url)
+					nayla.sendMessage(from, anu2, image, { quoted: nay, caption: anu1 })
+					nayla.sendMessage(from, anu3, audio, { mimetype: 'audio/mp4', duration :-999999999999999999, quoted: nay })
+					break
+                    
 case 'stctag':
 case 'stickertag':
 case 'stag':
