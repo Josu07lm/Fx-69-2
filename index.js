@@ -130,8 +130,6 @@ const ban = JSON.parse(fs.readFileSync('./datauser/banned.json'))
 const _limit = JSON.parse(fs.readFileSync('./database/json/limit.json'))
 const antigay = JSON.parse(fs.readFileSync('./nayla/antigay.json'))
 const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
-const nayXix = JSON.parse(fs.readFileSync('./nayla/nayXix.json')) 
-const nayXi = JSON.parse(fs.readFileSync('./nayla/nayXi.json')) 
 const botx = JSON.parse(fs.readFileSync('./nayla/botx.json')) 
 const imageh = fs.readFileSync('./lib/♡.jpeg')
 const { help } = require('./src/help')
@@ -5099,7 +5097,7 @@ case 'wallhd':
                     reply(naylachan) 
                     F = body.slice(8)              			    
                     anu = await getBuffer(`https://api.xteam.xyz/videomaker/retro?text=${F}&APIKEY=${apixteam}`)
-                    nayla.sendMessage(from, anu, video, {caption: `𝐹𝑒𝑙𝑖𝑥??𝑟??𝑐𝑘 𝐵𝑂𝑇`, quoted: nay1}) 
+                    nayla.sendMessage(from, anu, video, {caption: `𝐹𝑒𝑙𝑖𝑥??𝑟??𝑐?? 𝐵𝑂𝑇`, quoted: nay1}) 
                     break                     
                     
   /* ===================================================[ Felixcrack ]==============================================================*/    
